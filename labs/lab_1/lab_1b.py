@@ -22,6 +22,7 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     Returns:
         float: The result of the operation.
     """
+def simple_calculator(operation: str, num1: float, num2: float) -> float:
     if operation == "add":
         return num1 + num2
     elif operation == "subtract":
@@ -29,12 +30,12 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     elif operation == "multiply":
         return num1 * num2
     elif operation == "divide":
-        if num2 !=0:
-            return num1 / num2
-        else:
-            print("Cannot divide by zero")
+        if num2 == 0:
+            raise ValueError("Cannot divide by zero.")
+        return num1 / num2
     else:
-        print("Invalid operation.")
+        raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
+
     
 
 def main():
@@ -47,7 +48,7 @@ def main():
             num1 = float(input("Enter the first number: "))
             break
         except ValueError:
-            print("Invalid arguement")
+            raise ValueError("Invalid arguement")
         
 
     while True:
@@ -55,7 +56,7 @@ def main():
             num2 = float(input("Enter the second number: "))
             break
         except ValueError:
-            print("Invalid arguement")
+            raise ValueError("Invalid arguement")
 
 
     while True:
@@ -63,7 +64,7 @@ def main():
         if operation in {"add", "subtract", "multiply", "divide"}:
             break
         else:
-            print("Invalid input!")
+            raise ValueError("Invalid input!")
 
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)
